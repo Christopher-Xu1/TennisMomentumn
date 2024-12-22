@@ -16,10 +16,3 @@ class LinkedBinaryTree:
 
     def __init__(self, root=None):
         self.root = root
-        self.size = self.count_nodes()
-
-    def __len__(self):
-        return self.size
-
-    def is_empty(self):
-        return (len(self) == 0)
