@@ -2,7 +2,7 @@ from LinkedBinaryTree import *
 
 tree = LinkedBinaryTree()
 
-p = 0.5
+p = 0.5257
 #weights are implicit
 #right pointer means p
 #left pointer means 1-p
@@ -48,7 +48,7 @@ nDeuce = n30_15.left
 
 n15_30.right = nDeuce
 n15_30.left = LinkedBinaryTree().Node("15-40")
-n15_40 = n15_30.right
+n15_40 = n15_30.left
 
 n0_40.right = n15_40
 n0_40.left = LinkedBinaryTree().Node("LOSE")
@@ -70,6 +70,3 @@ nA_1.left = nDeuce
 
 nA_2.right = nDeuce
 nA_2.left = nWin
-
-
-
