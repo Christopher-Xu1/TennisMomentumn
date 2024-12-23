@@ -21,14 +21,14 @@ def build_set_tree():
                 nodes[(i, j)].right_weight = 0.6  # Example weight for server winprob
             if i < 6:
                 nodes[(i, j)].left = nodes[(i, j + 1)]  # q_g edge
-                nodes[(i, j)].left_weight = 0.6  
+                nodes[(i, j)].left_weight = 0.4  
 
     # Connect final nodes to WIN and LOSE
     nodes[(6, 5)].right = win_node  # p_t edge
-    nodes[(6, 5)].right_weight = 0.5  # Example weight for p_t
+    nodes[(6, 5)].right_weight = 0.6  # Example weight for p_t
 
     nodes[(6, 5)].left = lose_node  # q_t edge
-    nodes[(6, 5)].left_weight = 0.5  
+    nodes[(6, 5)].left_weight = 0.  
 
     return LinkedBinaryTree(nodes[(0, 0)])
 
