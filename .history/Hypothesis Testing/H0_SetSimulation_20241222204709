@@ -1,6 +1,5 @@
 from LinkedBinaryTree import LinkedBinaryTree
 import random
-
 def game_tree(p, breakpoints=0):
     # Adjust probabilities based on breakpoints
     p += breakpoints * 0.05
@@ -41,6 +40,7 @@ def construct_set_tree(p):
     # Build the tree starting from 0-0 games
     add_games(set_tree.root, 0, 0)
     return set_tree
+
 # Example Usage
 set_progression = construct_set_tree(0.6)
 # Print the progression of the set
