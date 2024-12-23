@@ -1,7 +1,29 @@
 from LinkedBinaryTree import LinkedBinaryTree
 import random
 import random
+# Cell 1: Import libraries and define the LinkedBinaryTree class
+import random
+import matplotlib.pyplot as plt
 
+class LinkedBinaryTree:
+    class Node:
+        def __init__(self, data, left=None, right=None, left_weight=None, right_weight=None):
+            self.data = data
+            self.left = left
+            if left is not None:
+                self.left.parent = self
+            self.right = right
+            if right is not None:
+                self.right.parent = self
+            self.parent = None
+
+            self.left_weight = left_weight
+            self.right_weight = right_weight
+
+    def __init__(self, root=None):
+        self.root = root
+
+# Cell 2: Define the build_set_tree function
 def build_set_tree():
     # Define all nodes explicitly to mimic the diagram
     nodes = {}
@@ -77,3 +99,19 @@ def simulate_sets(tree, max_steps=200):  # Increased max_steps to 200
 
     return results, points_over_time
 
+# Cell 4: Define the visualize_points function
+def visualize_points(points_over_time):
+    plt.figure(figsize=(10, 6))
+    plt.hist(points_over_time, bins=20, edgecolor="black", alpha=0.7)
+    plt.title("Distribution of Points Scored Per Set")
+    plt.xlabel("Points Scored")
+    plt.ylabel("Frequency")
+    plt.show()
+
+# Cell 5: Construct the tree, run simulations, and visualize results
+binary_tree = build_set_tree()
+
+results, points_over_time = simulate_sets(binary_tree)
+print("Simulation Results:", results)
+
+visualize_points(points_over_time)
