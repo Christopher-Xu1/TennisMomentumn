@@ -99,3 +99,13 @@ def simulate_sets(tree, max_steps=200):  # Increased max_steps to 200
 
     return results, avg_points_per_step, debug_path
 
+# Cell 4: Define the visualization functions
+
+# Cell 5: Construct the tree, run simulations, and visualize results
+binary_tree = build_set_tree()
+
+results, avg_points_per_step, debug_path = simulate_sets(binary_tree)
+print("Simulation Results:", results)
+print("Debug Path (First Simulation):", debug_path)
+
+visualize_avg_points(avg_points_per_step)

@@ -2,7 +2,8 @@ from LinkedBinaryTree import LinkedBinaryTree
 import random
 import random
 # Cell 1: Import libraries and define the LinkedBinaryTree class
-
+import random
+import matplotlib.pyplot as plt
 
 # Cell 2: Define the build_set_tree function
 def build_set_tree():
@@ -99,3 +100,23 @@ def simulate_sets(tree, max_steps=200):  # Increased max_steps to 200
 
     return results, avg_points_per_step, debug_path
 
+# Cell 4: Define the visualization functions
+def visualize_avg_points(avg_points_per_step):
+    plt.figure(figsize=(10, 6))
+    if avg_points_per_step:
+        plt.plot(range(len(avg_points_per_step)), avg_points_per_step, marker='o', linestyle='-', alpha=0.7)
+        plt.title("Average Points Scored Per Step")
+        plt.xlabel("Steps")
+        plt.ylabel("Average Points Scored")
+    else:
+        plt.text(0.5, 0.5, "No data to plot", fontsize=12, ha='center')
+    plt.show()
+
+# Cell 5: Construct the tree, run simulations, and visualize results
+binary_tree = build_set_tree()
+
+results, avg_points_per_step, debug_path = simulate_sets(binary_tree)
+print("Simulation Results:", results)
+print("Debug Path (First Simulation):", debug_path)
+
+visualize_avg_points(avg_points_per_step)
