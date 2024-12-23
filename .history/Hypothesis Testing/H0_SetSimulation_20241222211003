@@ -34,3 +34,4 @@ def build_set_tree():
 # Construct the tree
 binary_tree = build_set_tree()
 
+# The binary_tree now represents the set tree as per the diagram

@@ -32,5 +32,6 @@ def build_set_tree():
     return LinkedBinaryTree(nodes[(0, 0)])
 
 # Construct the tree
-binary_tree = build_set_tree()
+binary_tree = build_tree()
 
+# The binary_tree now represents the set tree as per the diagram
