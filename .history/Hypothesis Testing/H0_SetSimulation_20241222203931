@@ -43,6 +43,3 @@ def construct_set_tree(p, q):
 
 # Example Usage
 set_tree = construct_set_tree(p=0.6, q=0.4)  # Example probabilities for Player 1 and Player 2
-
-
-##push this
