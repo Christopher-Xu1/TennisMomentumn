@@ -1,0 +1,64 @@
+from LinkedBinaryTree import LinkedBinaryTree
+
+def game_tree(p, breakpoints=0):
+    """
+    Simulates the outcome of a single game using the game tree structure.
+    Parameters:
+        - p: Probability of Player 1 winning a point.
+        - breakpoints: Bonus probability for Player 1 winning the game (if applicable).
+    Returns:
+        - "WIN" or "LOSE" (outcome of the game for Player 1).
+    """
+    import random
+    
+    # Adjust probabilities based on breakpoints
+    p += breakpoints * 0.05
+    p = min(max(p, 0), 1)  # Ensure p remains between 0 and 1
+    
+    # Simulate the game using the game tree
+    # (Traversal logic would be similar to your game tree structure)
+    state = "0-0"
+    while state not in {"WIN", "LOSE"}:
+        if random.random() < p:
+            state = "WIN" if state == "40-0" else "15-0"  # Simplified for demo
+        else:
+            state = "LOSE" if state == "0-40" else "15-15"  # Simplified for demo
+    
+    return state
+
+def construct_set_tree(p, q):
+    """
+    Constructs a binary tree representing the progression of a set.
+    Parameters:
+        - p: Probability of Player 1 winning a point.
+        - q: Probability of Player 2 winning a point.
+    Returns:
+        - A LinkedBinaryTree representing the set tree.
+    """
+    set_tree = LinkedBinaryTree()
+    set_tree.root = LinkedBinaryTree.Node("0-0 games")
+
+    def add_games(node, p1_games, p2_games):
+        # Check if the set is over
+        if (p1_games >= 6 or p2_games >= 6) and abs(p1_games - p2_games) >= 2:
+            winner = "Player 1 wins set" if p1_games > p2_games else "Player 2 wins set"
+            node.right = LinkedBinaryTree.Node(winner)
+            return
+        
+        # Simulate the next game
+        game_result = game_tree(p, breakpoints=(p2_games > p1_games))  # Breakpoint adjustment
+        if game_result == "WIN":
+            new_state = f"{p1_games + 1}-{p2_games} games"
+        else:
+            new_state = f"{p1_games}-{p2_games + 1} games"
+        
+        # Add branches to the set tree
+        node.right = LinkedBinaryTree.Node(new_state)
+        add_games(node.right, p1_games + (game_result == "WIN"), p2_games + (game_result == "LOSE"))
+
+    # Build the tree starting from 0-0 games
+    add_games(set_tree.root, 0, 0)
+    return set_tree
+
+# Example Usage
+set_tree = construct_set_tree(p=0.6, q=0.4)  # Example probabilities for Player 1 and Player 2
