@@ -1,6 +1,9 @@
 from LinkedBinaryTree import * 
 
 def construct_tree(tree):
+    win= LinkedBinaryTree.Node("WIN")
+    lose= LinkedBinaryTree().Node("LOSE")
+    
     tree.root = LinkedBinaryTree.Node("0-0")
 
     n0_0 = tree.root
@@ -30,9 +33,8 @@ def construct_tree(tree):
     n0_30.left = LinkedBinaryTree().Node("0-40")
 
     n0_40 = n0_30.left
-    n40_0.right = LinkedBinaryTree().Node("WIN")
+    n40_0.right = win
 
-    nWin = n40_0.right
     n40_0.left = LinkedBinaryTree().Node("40-15")
     n40_15 = n40_0.left
 
@@ -44,28 +46,27 @@ def construct_tree(tree):
     n15_30.left = LinkedBinaryTree().Node("15-40")
     n15_40 = n15_30.left
 
+
     n0_40.right = n15_40
-    n0_40.left = LinkedBinaryTree().Node("LOSE")
-    nLose = n0_40.left
+    n0_40.left = lose
 
-    n40_15.left = nWin
-    n40_15.right = LinkedBinaryTree().Node("40-30, A1")
-    nA_1 = n40_15.right
+    n40_15.left = LinkedBinaryTree().Node("40-30, A1")
+    n40_15.right = win
+    nA_1 = n40_15.left
 
-    nDeuce.right = nA_1
+    nDeuce.right = nA_1 #player 1 advantange
     nDeuce.left = LinkedBinaryTree().Node("30-40, A2")
     nA_2 = nDeuce.left
 
     n15_40.right = nA_2
-    n15_40.left = nLose
+    n15_40.left = lose
 
-    nA_1.right = nWin
-    nA_1.left = nDeuce
-
+    nA_1.right = win
+    nA_1.left= nDeuce
     nA_2.right = nDeuce
-    nA_2.left = nWin
+    nA_2.left = lose
     
-    return 
+    return
 
 # tree = LinkedBinaryTree()
 #weights are implicit
