@@ -33,7 +33,7 @@ def build_set_tree():
     return LinkedBinaryTree(nodes[(0, 0)])
 
 # Simulate the sets and display results
-def simulate_sets(tree, max_steps=200):  
+def simulate_sets(tree, max_steps=200):  # Increased max_steps to 200
     results = {"WIN": 0, "LOSE": 0}
     
     for _ in range(1000):  # Run 1000 simulations
@@ -63,3 +63,9 @@ def simulate_sets(tree, max_steps=200):
 
     return results
 
+# Construct the tree
+binary_tree = build_set_tree()
+
+# Run simulations and display results
+results = simulate_sets(binary_tree)
+print("Simulation Results:", results)

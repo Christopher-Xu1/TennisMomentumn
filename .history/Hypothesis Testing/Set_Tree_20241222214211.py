@@ -25,15 +25,15 @@ def build_set_tree():
 
     # Connect final nodes to WIN and LOSE
     nodes[(6, 5)].right = win_node  # p_t edge
-    nodes[(6, 5)].right_weight = 0.6  # Example weight for p_t
+    nodes[(6, 5)].right_weight = 0.7  # Example weight for p_t
 
     nodes[(6, 5)].left = lose_node  # q_t edge
-    nodes[(6, 5)].left_weight = 0.4  
+    nodes[(6, 5)].left_weight = 0.3  
 
     return LinkedBinaryTree(nodes[(0, 0)])
 
 # Simulate the sets and display results
-def simulate_sets(tree, max_steps=200):  
+def simulate_sets(tree, max_steps=200):  # Increased max_steps to 200
     results = {"WIN": 0, "LOSE": 0}
     
     for _ in range(1000):  # Run 1000 simulations
@@ -63,3 +63,9 @@ def simulate_sets(tree, max_steps=200):
 
     return results
 
+# Construct the tree
+binary_tree = build_set_tree()
+
+# Run simulations and display results
+results = simulate_sets(binary_tree)
+print("Simulation Results:", results)

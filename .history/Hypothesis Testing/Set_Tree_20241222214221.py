@@ -63,3 +63,9 @@ def simulate_sets(tree, max_steps=200):
 
     return results
 
+# Construct the tree
+binary_tree = build_set_tree()
+
+# Run simulations and display results
+results = simulate_sets(binary_tree)
+print("Simulation Results:", results)

@@ -1,7 +1,5 @@
 from LinkedBinaryTree import LinkedBinaryTree
 import random
-import random
-
 def build_set_tree():
     # Define all nodes explicitly to mimic the diagram
     nodes = {}
@@ -18,22 +16,22 @@ def build_set_tree():
         for j in range(6):
             if j < 6:
                 nodes[(i, j)].right = nodes[(i + 1, j)]  # p_g edge
-                nodes[(i, j)].right_weight = 0.6  # Example weight for server winprob
+                nodes[(i, j)].right_weight = "p_g"
             if i < 6:
                 nodes[(i, j)].left = nodes[(i, j + 1)]  # q_g edge
-                nodes[(i, j)].left_weight = 0.4  
+                nodes[(i, j)].left_weight = "q_g"
 
     # Connect final nodes to WIN and LOSE
     nodes[(6, 5)].right = win_node  # p_t edge
-    nodes[(6, 5)].right_weight = 0.6  # Example weight for p_t
+    nodes[(6, 5)].right_weight = "p_t"
 
     nodes[(6, 5)].left = lose_node  # q_t edge
-    nodes[(6, 5)].left_weight = 0.4  
+    nodes[(6, 5)].left_weight = "q_t"
 
     return LinkedBinaryTree(nodes[(0, 0)])
 
 # Simulate the sets and display results
-def simulate_sets(tree, max_steps=200):  
+def simulate_sets(tree, max_steps=100):
     results = {"WIN": 0, "LOSE": 0}
     
     for _ in range(1000):  # Run 1000 simulations
@@ -51,15 +49,14 @@ def simulate_sets(tree, max_steps=200):
             # Randomly decide the next step based on weights
             random_value = random.random()
 
-            if current_node.left and current_node.left_weight is not None:
-                if random_value < current_node.left_weight:
+            if current_node.left and current_node.left_weight in ["q_g", "q_t"]:
+                if random_value < 0.5:  # Assume equal probability for now
                     current_node = current_node.left
                     continue
 
-            if current_node.right and current_node.right_weight is not None:
+            if current_node.right and current_node.right_weight in ["p_g", "p_t"]:
                 current_node = current_node.right
 
             steps += 1
 
     return results
-
